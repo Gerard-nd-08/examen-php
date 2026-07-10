@@ -48,8 +48,13 @@ class ConsoleView
             }
         }while(ch!=1 && ch!=2 && ch!=3);
 
-
-        return new Reservation($nom, $numero, $nuits, $type);
+        $r=new Reservation();
+        $r->setNom_client($nom);
+        $r->setNumero_chambre($numero);
+        $r->setNombre_nuits($nuits);
+        $r->setType_chambre($type);
+        
+        return $r;
     }
 
     public static function saisieId(): int

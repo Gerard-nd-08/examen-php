@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    <title>Ñu_Dem</title>
+    <title>Hotel</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -167,46 +167,72 @@
                     </div>
                 </div>
             </div>
-
-            <form
+            <div>
+                <form
+                    
                 action="http://localhost:8080/reservation/annul"
                 method="POST"
-                class="w-1/2 shadow-lg p-6 mt-5 bg-white rounded-lg flex flex-wrap gap-4"
-            >
-                <h3 class="w-full text-xl font-semibold">
-                    Annulation rendez-vous
-                </h3>
+                class="w-2/3 shadow-lg p-6 mt-5 bg-white rounded-lg flex flex-wrap gap-4">
+                    <h3 class="w-full text-xl font-semibold">
+                        Annulation rendez-vous
+                    </h3>
 
-                <div class="flex-1">
-                    <label for="id" class="block mb-2 font-medium">
-                        Id du chauffeur
-                    </label>
+                    <div class="flex-1">
+                        <label for="id" class="block mb-2 font-medium">
+                            Id du chauffeur
+                        </label>
 
-                    <input
-                        type="text"
-                        name="id"
-                        id="id"
-                        value="<?php echo isset($errors['id']) ? '' : $old['id'] ?? '' ?>"
-                        class="w-full px-3 py-2 border rounded-md <?php echo isset($errors['id']) ? 'border-red-500' : 'border-gray-300'; ?>"
-                    />
+                        <input
+                            type="text"
+                            name="id"
+                            id="id"
+                            value="<?php echo isset($errors['id']) ? '' : $old['id'] ?? '' ?>"
+                            class="w-full px-3 py-2 border rounded-md <?php echo isset($errors['id']) ? 'border-red-500' : 'border-gray-300'; ?>"
+                        />
+                        
 
-                    <small class="text-red-500">
-                        <?php echo $errors['id'] ?? ''; ?>
-                    </small>
+                        <small class="text-red-500">
+                            <?php echo $errors['id'] ?? ''; ?>
+                        </small>
+                    </div>
+
+                    <div class="flex items-end">
+                        <button
+                            type="submit"
+                            name="delete"
+                            class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
+                        >
+                            Annuler
+                        </button>
+                
+                </div>
+                <div class="flex justify-end mt-4">
+                    <div class="bg-green-100 p-4 rounded-lg shadow">
+                        <h3 class="font-bold">Chiffre d'affaires :</h3>
+                        <p class="text-xl font-bold">
+                            <?= number_format($viewData['ca'] ?? 0) ?> FCFA
+                        </p>
+                    </div>
                 </div>
 
-                <div class="flex items-end">
-                    <button
-                        type="submit"
-                        name="delete"
-                        class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
-                    >
-                        Annuler
-                    </button>
+                    
+                
                 </div>
             </form>
+            
+            </div>
+            
 
         </div>
     </main>
 </body>
+ <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Bundle (includes Popper) -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
 </html>

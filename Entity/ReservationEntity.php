@@ -9,12 +9,8 @@ class ReservationEntity
     private string $type_chambre;
     private string $statut;
 
-    public function __construct(string $nom_client ,int $numero_chambre,int $nombre_nuits,string $type_chambre )
+    public function __construct()
     {
-        $this->nom_client = $nom_client;
-        $this->numero_chambre = $numero_chambre;
-        $this->nombre_nuits = $nombre_nuits;
-        $this->type_chambre = $type_chambre;
         $this->statut = "VALIDEE";
     }
 

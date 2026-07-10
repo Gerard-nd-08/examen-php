@@ -14,7 +14,7 @@ class Router
 
         $uri=$_SERVER['REQUEST_URI'];
         switch ($uri) {
-            case '/reservation/lindex':
+            case '/reservation/index':
                 $controller->listerReservationActive();
                 break;
             case '/chauffeur/index':

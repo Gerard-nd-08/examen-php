@@ -34,13 +34,18 @@ class ReservationController{
         return true;
     }
 
-    public function listerReservationActive(): array
+    public function listerReservationActive(): void
     {
         $reservations = $this->model->selectByStatut("VALIDEE");
-        if (!empty($reservations)) {
-            return $reservations;
-        }
-        return [];
+        
+        $ca=$this->calculCA($reservations);
+        $viewData = [
+        "data" => $reservations,
+        "errors" => [],
+        "ca" => $ca,
+        "old" => []
+            ];
+        require_once __DIR__ . '/../views/web/reservation.html.php';
     }
 
     public function getLongSejour():array{
