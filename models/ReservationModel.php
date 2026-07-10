@@ -24,6 +24,23 @@ class ReservationModel extends Database
       }
     }
 
+    public function selectById(int $id): ?ReservationEntity{
+
+        $this->openConnexion();
+
+        $sql = "SELECT * FROM " . $this->tableName . " WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        $this->closeConnexion();
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->classeName);
+        $result = $stmt->fetch();
+
+        return $result !== false ? $result : null;
+    }
+
     public  function insert(ReservationEntity $reservation): int
     {
         $this->openConnexion();

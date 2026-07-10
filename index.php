@@ -15,18 +15,16 @@ class Router
         $uri=$_SERVER['REQUEST_URI'];
         switch ($uri) {
             case '/reservation/index':
-                $controller->listerReservationActive();
-                break;
-            case '/chauffeur/index':
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    if (isset($_POST['delete'])) {
-                        $chauffeurCtrl->deleteChauffeur();
+                    if (isset($_POST['annul'])) {
+                        $controller->annulerReservations();
                     } else {
-                        $chauffeurCtrl->createChauffeur();
+                        $controller->createReservation();
                     }
                 } else {
-                    $chauffeurCtrl->showChauffeurs();
+                    $controller->listerReservationActive();
                 }
+                break;
             default:
                 $controller->listerReservationActive();
                 break;

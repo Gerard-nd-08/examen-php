@@ -16,8 +16,23 @@ class ReservationController{
         $nombre_nuits=trim($_POST['nombre_nuits']??'');
         $type_chambre=trim($_POST['type_chambre']??'');
           
-        $reservation=new reservationEntity($nom,$numero_chambre,$nombre_nuits,$type_chambre);
-        $this->model->insert($reservation);
+        $r=new reservationEntity();
+        $r->setNom_client($nom);
+        $r->setNumero_chambre($numero_chambre);
+        $r->setNombre_nuits($nombre_nuits);
+        $r->setType_chambre($type_chambre);
+
+        $this->model->insert($r);
+
+        $reservations = $this->model->selectByStatut("VALIDEE");
+        $ca=$this->calculCA($reservations);
+        $viewData = [
+        "data" => $reservations,
+        "errors" => [],
+        "ca" => $ca,
+        "old" => []
+            ];
+        require_once __DIR__ . '/../views/web/reservation.html.php';
 
     }
 
@@ -51,6 +66,23 @@ class ReservationController{
     public function getLongSejour():array{
         $reservations = $this->model->selectLongSejour();
         return $reservations;
+    }
+
+    public function annulerReservations(): void
+    {
+        $id = (int)trim($_POST['id'] ?? '');
+        $reservation = $this->model->selectById($id);
+        if ($reservation !== null && $reservation->getStatut() === "VALIDEE") {
+            $this->model->update($reservation);
+        }
+        $reservations = $this->model->selectByStatut("VALIDEE");
+        $viewData = [
+            "data"    => $reservations,
+            "errors"  => [],
+            "ca"      => $this->calculCA($reservations),
+            "old"     => []
+        ];
+        require_once __DIR__ . '/../views/web/reservation.html.php';
     }
 
     public function annulerReservation(int $id): string

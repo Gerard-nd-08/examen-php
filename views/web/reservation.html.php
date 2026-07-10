@@ -170,7 +170,7 @@
             <div>
                 <form
                     
-                action="http://localhost:8080/reservation/annul"
+                action="http://localhost:8080/reservation/index"
                 method="POST"
                 class="w-2/3 shadow-lg p-6 mt-5 bg-white rounded-lg flex flex-wrap gap-4">
                     <h3 class="w-full text-xl font-semibold">
@@ -199,7 +199,7 @@
                     <div class="flex items-end">
                         <button
                             type="submit"
-                            name="delete"
+                            name="annul"
                             class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
                         >
                             Annuler
