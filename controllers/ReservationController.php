@@ -36,10 +36,6 @@ class ReservationController{
 
     }
 
-    public function ajouterReservation(ReservationEntity $reservation){
-        $this->model->insert($reservation);
-    }
-
     public static function verifiePositif(int $valeur): bool
     {
         if ($valeur <= 0) {
@@ -63,11 +59,6 @@ class ReservationController{
         require_once __DIR__ . '/../views/web/reservation.html.php';
     }
 
-    public function getLongSejour():array{
-        $reservations = $this->model->selectLongSejour();
-        return $reservations;
-    }
-
     public function annulerReservations(): void
     {
         $id = (int)trim($_POST['id'] ?? '');
@@ -83,18 +74,6 @@ class ReservationController{
             "old"     => []
         ];
         require_once __DIR__ . '/../views/web/reservation.html.php';
-    }
-
-    public function annulerReservation(int $id): string
-    {
-        $reservations = $this->model->selectByStatut("VALIDEE");
-        foreach ($reservations as $reservation) {
-            if ($reservation->getId() === $id) {
-                $this->model->update($id);
-                return "Réservation annulée avec succès.";
-            }
-        }
-        return "Réservation non trouvée ou déjà annulée.";
     }
 
     public function calculCA(array $reservations): float
